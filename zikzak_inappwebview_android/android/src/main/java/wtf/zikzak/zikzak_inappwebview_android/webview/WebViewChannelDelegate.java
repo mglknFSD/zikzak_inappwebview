@@ -369,6 +369,18 @@ public class WebViewChannelDelegate extends ChannelDelegateImpl {
           result.success(null);
         }
         break;
+      case createPdf:
+        if (webView != null) {
+          PrintJobSettings pdfSettings = new PrintJobSettings();
+          Map<String, Object> pdfSettingsMap = (Map<String, Object>) call.argument("settings");
+          if (pdfSettingsMap != null) {
+            pdfSettings.parse(pdfSettingsMap);
+          }
+          webView.createPdf(pdfSettings, result);
+        } else {
+          result.success(null);
+        }
+        break;
       case getContentHeight:
         if (webView instanceof InAppWebView) {
           result.success(webView.getContentHeight());

@@ -2504,6 +2504,15 @@ public final class InAppWebView
         return null;
     }
 
+    @Override
+    public void createPdf(
+        @Nullable PrintJobSettings settings,
+        @NonNull final MethodChannel.Result result
+    ) {
+        // PDF creation via WebView is not natively supported on Android
+        result.success(null);
+    }
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu) {
